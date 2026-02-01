@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Pelajari | NVIDIA Style</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+    --nvidia-green: #76b900;
+    --dark-bg: #000000;
+    --card-bg: #0b0f14;
+    --border: #1f2937;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--dark-bg);
+    color: #e5e7eb;
+}
+
+header {
+    padding: 50px 20px;
+    text-align: center;
+    background: radial-gradient(circle at top, #0f1c0a, #000);
+}
+
+header h1 {
+    color: var(--nvidia-green);
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #9ca3af;
+}
+
+.pelajari {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 25px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    border-color: var(--nvidia-green);
+    transform: translateY(-6px);
+}
+
+.card h3 {
+    color: var(--nvidia-green);
+    margin-top: 0;
+}
+
+.card p {
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    max-width: 600px;
+    width: 90%;
+    padding: 30px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    animation: fade 0.3s ease;
+}
+
+.modal-content h3 {
+    color: var(--nvidia-green);
+}
+
+.close {
+    float: right;
+    font-size: 22px;
+    cursor: pointer;
+    color: #9ca3af;
+}
+
+.close:hover {
+    color: var(--nvidia-green);
+}
+
+@keyframes fade {
+    from {opacity: 0; transform: scale(0.95);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #6b7280;
+    border-top: 1px solid var(--border);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Pelajari</h1>
+    <p>Teknologi • Produk • Panduan Resmi</p>
+</header>
+
+<section class="pelajari">
+    <div class="grid">
+
+        <div class="card" onclick="openModal(1)">
+            <h3>Tentang Platform</h3>
+            <p>Pelajari konsep dan tujuan platform ini.</p>
+        </div>
+
+        <div class="card" onclick="openModal(2)">
+            <h3>Teknologi yang Digunakan</h3>
+            <p>Arsitektur dan sistem yang kami gunakan.</p>
+        </div>
+
+        <div class="card" onclick="openModal(3)">
+            <h3>Cara Pembelian</h3>
+            <p>Langkah aman dan resmi untuk membeli produk.</p>
+        </div>
+
+        <div class="card" onclick="openModal(4)">
+            <h3>Keunggulan Produk</h3>
+            <p>Alasan memilih produk di platform ini.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">×</span>
+        <div id="modalText"></div>
+    </div>
+</div>
+
+<footer>
+    © 2018 Platform Teknologi |COREXA
+</footer>
+
+<script>
+function openModal(id) {
+    const data = {
+        1: `
+            <h3>Tentang Platform</h3>
+            <p>Platform ini dirancang untuk memberikan pengalaman modern,
+            cepat, dan aman dalam menjelajahi serta membeli produk teknologi
+            berkualitas tinggi.</p>
+        `,
+        2: `
+            <h3>Teknologi yang Digunakan</h3>
+            <p>Sistem menggunakan arsitektur modern, optimalisasi performa,
+            dan keamanan tingkat tinggi untuk kenyamanan pengguna.</p>
+        `,
+        3: `
+            <h3>Cara Pembelian</h3>
+            <ol>
+                <li>Pilih produk</li>
+                <li>Klik beli sekarang</li>
+                <li>Pilih marketplace resmi</li>
+                <li>Selesaikan transaksi</li>
+            </ol>
+        `,
+        4: `
+            <h3>Keunggulan Produk</h3>
+            <ul>
+                <li>Produk resmi & terverifikasi</li>
+                <li>Performa tinggi</li>
+                <li>Dukungan teknologi terbaru</li>
+            </ul>
+        `
+    };
+
+    document.getElementById("modalText").innerHTML = data[id];
+    document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+</script>
+
+</body>
+</html>
